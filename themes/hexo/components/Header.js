@@ -21,9 +21,9 @@ const Header = props => {
       changeType(
         new Typed('#typed', {
           strings: CONFIG_HEXO.HOME_BANNER_GREETINGS,
-          typeSpeed: 200,
+          typeSpeed: 120,
           backSpeed: 100,
-          backDelay: 400,
+          backDelay: 200,
           showCursor: true,
           smartBackspace: true
         })
@@ -62,7 +62,7 @@ const Header = props => {
     windowTop = scrollS
   }
 
-  function updateHeaderHeight () {
+  function updateHeaderHeight() {
     setTimeout(() => {
       const wrapperElement = document.getElementById('wrapper')
       wrapperTop = wrapperElement?.offsetTop
@@ -81,11 +81,11 @@ const Header = props => {
       <div className="absolute flex flex-col h-full items-center justify-center w-full ">
         <div className='text-4xl md:text-5xl text-white shadow-text'>{siteInfo?.title}</div>
         <div className='mt-2 h-12 items-center text-center shadow-text text-white text-lg'>
-          <span id='typed'/>
+          <span id='typed' />
         </div>
 
         {/* 首页导航插件 */}
-        { CONFIG_HEXO.HOME_NAV_BUTTONS && <NavButtonGroup {...props}/>}
+        {CONFIG_HEXO.HOME_NAV_BUTTONS && <NavButtonGroup {...props} />}
 
       </div>
       <div
@@ -94,7 +94,7 @@ const Header = props => {
         }}
         className="cursor-pointer w-full text-center py-4 text-3xl absolute bottom-10 text-white"
       >
-        <i className='animate-bounce fas fa-angle-down'/>
+        <i className='animate-bounce fas fa-angle-down' />
       </div>
     </header>
   )
