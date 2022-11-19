@@ -16,7 +16,7 @@ const ExampleRecentComments = (props) => {
       serverURL: BLOG.COMMENT_WALINE_SERVER_URL,
       count: 5
     }).then(({ comments }) => {
-      changeLoading(true)
+      changeLoading(false)
       updateComments(comments)
     })
   }, [])
