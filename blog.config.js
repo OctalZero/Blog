@@ -25,24 +25,6 @@ const BLOG = {
   BEI_AN: process.env.NEXT_PUBLIC_BEI_AN || '渝ICP备2022000387号', // 备案号 闽ICP备XXXXXXX
   APPEARANCE: 'light', // ['light', 'dark', 'auto'], // light 日间模式 ， dark夜间模式， auto根据时间和主题自动夜间模式
 
-<<<<<<< HEAD
-=======
-  AUTHOR: 'tangly1024', // 作者
-  BIO: '一个普通的干饭人🍚', // 作者简介
-  LINK: 'https://tangly1024.com', // 网站地址
-  KEYWORDS: 'Notion, 博客', // 网站关键词 英文逗号隔开
-  // 社交链接，不需要可留空白，例如 CONTACT_WEIBO:''
-  CONTACT_EMAIL: 'mail@tangly1024.com', // 邮箱
-  CONTACT_WEIBO: '', // 你的微博个人主页
-  CONTACT_TWITTER: '', // 你的twitter个人主页
-  CONTACT_GITHUB: 'https://github.com/tangly1024', // 你的github个人主页
-  CONTACT_TELEGRAM: 'https://t.me/tangly_1024', // 你的telegram 地址 例如 https://t.me/tangly_1024
-  CONTACT_LINKEDIN: '', // 你的linkedIn 首页
-
-  // 网站默认使用PingFangSC及NotoSansSC，
-  // 如需自定义字体，请将CUSTOM_FONT改为 true，并将CUSTOM_FONT_URL改为你的字体CSS地址，同时在CUSTOM_FONT_SANS与CUSTOM_FONT_SERIF中指定你的font-family
-  CUSTOM_FONT: process.env.NEXT_PUBLIC_CUSTOM_FONT || false, // 是否使用自定义字体
->>>>>>> upstream/main
   // 自定义字体示例： 请先将 CUSTOM_FONT 改为 true， 并将 CUSTOM_FONT_URL 改为你的字体CSS地址，同时在 CUSTOM_FONT_SANS 与 CUSTOM_FONT_SERIF 中指定你的 fontfamily
   CUSTOM_FONT_URL: ['https://npm.elemecdn.com/lxgw-wenkai-webfont@1.6.0/style.css'], // 自定义字体的CSS
   CUSTOM_FONT_SANS: ['LXGW WenKai'], // 自定义无衬线字体
@@ -120,10 +102,6 @@ const BLOG = {
   COMMENT_UTTERRANCES_REPO:
     process.env.NEXT_PUBLIC_COMMENT_UTTERRANCES_REPO || '', // 你的代码仓库名， 例如我是 'tangly1024/NotionNext'； 更多文档参考 https://utteranc.es/
 
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/main
   // gitalk评论插件 更多参考 https://gitalk.github.io/
   COMMENT_GITALK_REPO: process.env.NEXT_PUBLIC_COMMENT_GITALK_REPO || '', // 你的Github仓库名，例如 'NotionNext'
   COMMENT_GITALK_OWNER: process.env.NEXT_PUBLIC_COMMENT_GITALK_OWNER || '', // 你的用户名 e.g tangly1024
