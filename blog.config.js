@@ -14,7 +14,7 @@ const BLOG = {
   THEME: process.env.NEXT_PUBLIC_THEME || 'hexo', // 主题， 支持 ['next','hexo',"fukasawa','medium','example'] @see https://preview.tangly1024.com
   THEME_SWITCH: process.env.NEXT_PUBLIC_THEME_SWITCH || false, // 是否显示切换主题按钮
   LANG: 'zh-CN', // e.g 'zh-CN','en-US'  see /lib/lang.js for more.
-  HOME_BANNER_IMAGE: './bg_image.jpg', // 首页背景大图，默认文件：/public/bg_image.jpg 。会被Notion中的封面图覆盖。
+  HOME_BANNER_IMAGE: process.env.NEXT_PUBLIC_HOME_BANNER_IMAGE || './bg_image.jpg', // 首页背景大图，默认文件：/public/bg_image.jpg 。会被Notion中的封面图覆盖。
   SINCE: 2022, // e.g if leave this empty, current year will be used.
   BEI_AN: process.env.NEXT_PUBLIC_BEI_AN || '渝ICP备2022000387号', // 备案号 闽ICP备XXXXXXX
   APPEARANCE: 'light', // ['light', 'dark', 'auto'], // light 日间模式 ， dark夜间模式， auto根据时间和主题自动夜间模式
@@ -69,7 +69,7 @@ const BLOG = {
   POST_URL_PREFIX: process.env.NEXT_PUBLIC_POST_URL_PREFIX || 'article', // POST类型文章的默认路径前缀，例如默认POST类型的路径是  /article/[slug]
   // 如果此项配置为 '' 空， 则文章将没有前缀路径，使用场景： 希望文章前缀路径为 /post 的情况 支持多级
 
-  POST_LIST_STYLE: 'page', // ['page','scroll] 文章列表样式:页码分页、单页滚动加载
+  POST_LIST_STYLE: process.env.NEXT_PUBLIC_PPOST_LIST_STYLE || 'page', // ['page','scroll] 文章列表样式:页码分页、单页滚动加载
   POST_LIST_PREVIEW: process.env.NEXT_PUBLIC_POST_PREVIEW || 'false', //  是否在列表加载文章预览
   POST_PREVIEW_LINES: 6, // 预览博客行数
   POST_RECOMMEND_COUNT: 6, // 推荐文章数量
@@ -109,7 +109,7 @@ const BLOG = {
   // 悬浮挂件
   WIDGET_PET: process.env.NEXT_PUBLIC_WIDGET_PET || true, // 是否显示宠物挂件
   WIDGET_PET_LINK:
-    'https://cdn.jsdelivr.net/npm/live2d-widget-model-nito@1.0.5/assets/nito.model.json', // 挂件模型地址 @see https://github.com/xiazeyu/live2d-widget-models
+    process.env.NEXT_PUBLIC_WIDGET_PET_LINK || 'https://cdn.jsdelivr.net/npm/live2d-widget-model-nito@1.0.5/assets/nito.model.json', // 挂件模型地址 @see https://github.com/xiazeyu/live2d-widget-models
   WIDGET_PET_SWITCH_THEME: false, // 点击宠物挂件切换博客主题
 
   // 音乐播放插件
@@ -118,7 +118,7 @@ const BLOG = {
   MUSIC_PLAYER_AUTO_PLAY: process.env.NEXT_PUBLIC_MUSIC_PLAYER_AUTO_PLAY || true, // 是否自动播放，不过自动播放时常不生效（移动设备不支持自动播放）
   MUSIC_PLAYER_SHOW_LRC: process.env.NEXT_PUBLIC_MUSIC_PLAYER_SHOW_LRC || false, // 是否展示歌词（前提是有配置歌词路径，对 meting 无效）
   MUSIC_PLAYER_CDN_URL: process.env.NEXT_PUBLIC_MUSIC_PLAYER_CDN_URL || 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/aplayer/1.10.1/APlayer.min.js',
-  MUSIC_PLAYER_ORDER: 'list', // 默认播放方式，顺序 list，随机 random
+  MUSIC_PLAYER_ORDER: process.env.NEXT_PUBLIC_MUSIC_PLAYER_ORDER || 'list', // 默认播放方式，顺序 list，随机 random
   MUSIC_PLAYER_AUDIO_LIST: [ // 示例音乐列表。除了以下配置外，还可配置歌词，具体配置项看此文档 https://aplayer.js.org/#/zh-Hans/
     {
       name: '风を共に舞う気持ち',
@@ -210,9 +210,14 @@ const BLOG = {
   // 自定义配置notion数据库字段名
   NOTION_PROPERTY_NAME: {
     password: process.env.NEXT_PUBLIC_NOTION_PROPERTY_PASSWORD || 'password',
-    type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || 'type',
-    title: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TITLE || 'title',
+    type: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE || 'type', // 文章类型，
+    type_post: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_POST || 'Post', // 当type文章类型与此值相同时，为博文。
+    type_page: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_PAGE || 'Page', // 当type文章类型与此值相同时，为单页。
+    type_notice: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TYPE_NOTICE || 'Notice', // 当type文章类型与此值相同时，为公告。
+    title: process.env.NEXT_PUBLIC_NOTION_PROPERTY_TITLE || 'title', // 文章标题
     status: process.env.NEXT_PUBLIC_NOTION_PROPERTY_STATUS || 'status',
+    status_publish: process.env.NEXT_PUBLIC_NOTION_PROPERTY_STATUS_PUBLISH || 'Published', // 当status状态值与此相同时为发布，可以为中文
+    status_invisible: process.env.NEXT_PUBLIC_NOTION_PROPERTY_STATUS_INVISIBLE || 'Invisible', // 当status状态值与此相同时为隐藏发布，可以为中文 ， 除此之外其他页面状态不会显示在博客上
     summary: process.env.NEXT_PUBLIC_NOTION_PROPERTY_SUMMARY || 'summary',
     slug: process.env.NEXT_PUBLIC_NOTION_PROPERTY_SLUG || 'slug',
     category: process.env.NEXT_PUBLIC_NOTION_PROPERTY_CATEGORY || 'category',
