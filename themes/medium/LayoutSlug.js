@@ -13,22 +13,22 @@ import ArticleAround from './components/ArticleAround'
 import TocDrawer from './components/TocDrawer'
 import CategoryItem from './components/CategoryItem'
 import TagItemMini from './components/TagItemMini'
+import ShareBar from '@/components/ShareBar'
 
 export const LayoutSlug = props => {
   const { post, prev, next, siteInfo, lock, validPassword } = props
   const { locale } = useGlobal()
 
   const date = formatDate(
-    post?.date?.start_date || post?.createdTime,
+    post?.publishTime,
     locale.LOCALE
   )
   if (!post) {
-    return <LayoutBase {...props} showInfoCard={true}
-        />
+    return <LayoutBase {...props} showInfoCard={true} />
   }
 
-  const slotRight = post?.toc && post?.toc?.length > 3 && (
-        <div key={locale.COMMON.TABLE_OF_CONTENTS} >
+  const slotRight = post?.toc && post?.toc?.length >= 3 && (
+      <div key={locale.COMMON.TABLE_OF_CONTENTS} >
             <Catalog toc={post.toc} />
             {/* <JumpToTopButton className='text-gray-400 hover:text-green-500 hover:bg-gray-100 py-1 duration-200' /> */}
         </div>
@@ -71,26 +71,18 @@ export const LayoutSlug = props => {
                     {post && (<NotionPage post={post} />)}
                 </section>
 
-                <section className="px-1 py-2 my-1 text-sm font-light overflow-auto text-gray-600  dark:text-gray-400">
-                    {/* 文章内嵌广告 */}
-                    <ins
-                        className="adsbygoogle"
-                        style={{ display: 'block', textAlign: 'center' }}
-                        data-adtest="on"
-                        data-ad-layout="in-article"
-                        data-ad-format="fluid"
-                        data-ad-client="ca-pub-2708419466378217"
-                        data-ad-slot="3806269138"
-                    />
-                </section>
-
                 <section>
+
+                    {/* 分享 */}
+                    <ShareBar post={post} />
+                    {/* 文章分类和标签信息 */}
                     <div className='flex justify-between'>
                         {CONFIG_MEDIUM.POST_DETAIL_CATEGORY && post.category && <CategoryItem category={post.category} />}
                         <div>
                             {CONFIG_MEDIUM.POST_DETAIL_TAG && post?.tagItems?.map(tag => <TagItemMini key={tag.name} tag={tag} />)}
                         </div>
                     </div>
+
                     {post.type === 'Post' && <ArticleAround prev={prev} next={next} />}
                     <Comment frontMatter={post} />
                 </section>
@@ -100,3 +92,5 @@ export const LayoutSlug = props => {
         </LayoutBase>
   )
 }
+
+export default LayoutSlug

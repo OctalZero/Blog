@@ -11,6 +11,7 @@ import ArticleAdjacent from './components/ArticleAdjacent'
 import ArticleCopyright from './components/ArticleCopyright'
 import ArticleRecommend from './components/ArticleRecommend'
 import { isBrowser } from '@/lib/utils'
+import ShareBar from '@/components/ShareBar'
 
 export const LayoutSlug = props => {
   const { post, lock, validPassword } = props
@@ -57,24 +58,15 @@ export const LayoutSlug = props => {
               {post && <NotionPage post={post} />}
             </section>
 
-            <section className="px-1 py-2 my-1 text-sm font-light overflow-auto text-gray-600  dark:text-gray-400">
-              {/* 文章内嵌广告 */}
-              <ins className="adsbygoogle"
-                style={{ display: 'block', textAlign: 'center' }}
-                data-adtest="on"
-                data-ad-layout="in-article"
-                data-ad-format="fluid"
-                data-ad-client="ca-pub-2708419466378217"
-                data-ad-slot="3806269138" />
-            </section>
-
+            {/* 分享 */}
+            <ShareBar post={post} />
             {post.type === 'Post' && <ArticleCopyright {...props} /> }
             {post.type === 'Post' && <ArticleRecommend {...props} /> }
             {post.type === 'Post' && <ArticleAdjacent {...props} /> }
 
           </article>
 
-          <hr className='border-dashed' />
+          <div className='pt-4 border-dashed'></div>
 
           {/* 评论互动 */}
           <div className="duration-200 overflow-x-auto bg-white dark:bg-hexo-black-gray px-3">
@@ -90,3 +82,5 @@ export const LayoutSlug = props => {
     </LayoutBase>
   )
 }
+
+export default LayoutSlug
